@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -13,49 +14,54 @@ class EnrollHighSchool(models.Model):
 
         '진학자 특수목적고 예고체고',
         '진학자 특수목적고 마이스터고',
-        # '진학자 특수목적고 소계',
+        '',  # '진학자 특수목적고 소계',
         '진학자 자율고 자율형사립고',
         '진학자 자율고 자율형공립고',
 
-        # '진학자 자율고 소계',
+        '',  # '진학자 자율고 소계',
         '진학자 기타',
-        '진학자 진학자 계',
+        '',  # '진학자 진학자 계',
         '취업자',
         '무직 및 미상'
     ]
 
-    sido = None
-    gugun = None
-    year = None
-    school_code = None
-    region_code = None
+    jibun = models.CharField(max_length=50, help_text="지번 주소")
+    road = models.CharField(max_length=50, help_text="도로명 주소")
+    year = models.IntegerField(help_text="년도")
+    school_code = models.CharField(max_length=50, help_text="학교코드")
+    region_code = models.CharField(max_length=50, help_text="지역코드")
 
-    graduate = None
-    general = None
-    characterization = None
-    science = None
-    foreigner = None
+    graduate = models.FloatField(help_text="졸업자")
+    general = models.FloatField(help_text="진학자 일반고'")
+    characterization = models.FloatField(help_text="진학자 특성화고")
+    science = models.FloatField(help_text="진학자 특수목적고 과학고'")
+    foreigner = models.FloatField(help_text="진학자 특수목적고 외고국제고'")
 
-    art = None
-    meister = None
+    art = models.FloatField(help_text="진학자 특수목적고 예고체고'")
+    meister = models.FloatField(help_text="진학자 특수목적고 마이스터고'")
     # sum
-    private = None
-    public = None
+    private = models.FloatField(help_text="진학자 자율고 자율형사립고'")
+    public = models.FloatField(help_text="진학자 자율고 자율형공립고'")
 
     # sum
-    etc = None
+    etc = models.FloatField(help_text="진학자 기타'")
     # sum
-    job = None
-    nothing = None
+    job = models.FloatField(help_text="취업자")
+    nothing = models.FloatField(help_text="무직 및 미상")
+
+    data_type = models.CharField(max_length=5, help_text="수정일")
+    created_at = models.DateTimeField(default=timezone.now, help_text="수정일")
+    updated_at = models.DateTimeField(default=timezone.now, null=True, help_text="수정일")
+    deleted_at = models.DateTimeField(null=True, help_text="수정일")
 
     @classmethod
     def create(cls, data):
         enroll = cls(
-            sido=data['sido'],
-            gugun=data['gugun'],
-            year=data['year'],
-            school_code=data['school_code'],
-            region_code=data['region_code'],
+            jibun=data['지번'],
+            road=data['도로명'],
+            year=data['년도'],
+            school_code=data['학교코드'],
+            region_code=data['지역코드'],
 
             graduate=data[cls.column[0]],
             general=data[cls.column[1]],
@@ -72,8 +78,13 @@ class EnrollHighSchool(models.Model):
             # sum
             etc=data[cls.column[11]],
             # sum
-            job=data[cls.column[13]],
+            job=data[cls.column[13] or ''],
             nothing=data[cls.column[14]],
+
+            data_type=data['형태']
         )
         # do something with the book
         return enroll
+
+    def __str__(self):
+        return self.region_code

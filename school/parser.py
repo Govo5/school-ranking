@@ -1,9 +1,13 @@
+import os
 import sys
 import json
 import requests
 
 from pprint import pprint
 from bs4 import BeautifulSoup
+
+from school_ranking.settings import BASE_DIR
+from .models import EnrollHighSchool
 
 
 # http://www.schoolinfo.go.kr/  학교 알리미 홈
@@ -32,7 +36,7 @@ def school_parser():
     status_code = request.status_code
     json = request.text
     if status_code == 200:
-        f = open('school.json', 'w')
+        f = open('./school.json', 'w')
         f.write(json)
         f.close()
         print('파싱성공!!!')
@@ -70,13 +74,12 @@ def school_parser():
 
 # 2. 개별 학교 정보 html 파싱하기
 # http://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?HG_CD=B100005180 삼각산중학교 학교 상세 페이지
-def get_school_webpage_html(name):
-    code = get_middle_school_code(name)
+def get_school_web_html(year, info):
     # HTTP GET Request
     url = 'http://www.schoolinfo.go.kr/ei/pp/Pneipp_b06_s0p.do'
     data = {
-        'HG_NM': name,
-        'HG_CD': code,
+        'HG_NM': get_school_name(info),
+        'HG_CD': get_school_code(info),
         'GS_BURYU_CD': 'JG040',
         'GS_HANGMOK_CD': '06',
         'JG_BURYU_CD': 'JG130',
@@ -84,39 +87,49 @@ def get_school_webpage_html(name):
         'JG_GUBUN': 1,
         'GS_HANGMOK_NO': '13-다',
         'GS_HANGMOK_NM': '졸업생의 진로 현황',
-        'JG_YEAR2': 2017,
+        'JG_YEAR2': year,
         'GS_TYPE': 'Y',
-        'JG_YEAR': 2017,
+        'JG_YEAR': year,
         'SORT': 'BR',
-        'CHOSEN_JG_YEAR': 2017,
-        'PRE_JG_YEAR': 2017
+        'CHOSEN_JG_YEAR': year,
+        'PRE_JG_YEAR': year
     }
 
     return requests.post(url, data=data)
 
 
-def get_dict_from_parsed_html(staticstic_number):
+def get_dict_from_parsed_html(info, year, statistics_number):
     table_data = [[cell.get('title') + ":" + cell.text for cell in row("td") if cell.text]
-                  for row in staticstic_number[0]("tr")]
+                  for row in statistics_number[0]("tr")]
     data = []
-    for item in table_data:
+    data_type = ['', '', '', '', '남', '여', '총합', '통계']
+    for index, item in enumerate(table_data):
+        if index < 4:
+            continue
         row = {
-            'sido': None,
-            'gugun': None,
-            'year': None,
-            'school_code': None,
-            'region_code': None
+            '지번': get_jibun(info),
+            '도로명': get_road(info),
+            '년도': year,
+            '학교코드': get_school_code(info),
+            '지역코드': get_region_code(info),
+            '형태': data_type[index]
         }
         for col in item:
             string = col.split(":")
             row.setdefault(string[0], string[1])
         data.append(row)
 
-    pprint(data)
+    enroll_high_school = None
+    for index in range(0, len(data)):
+        enroll_high_school = EnrollHighSchool().create(data[index])
+        enroll_high_school.save()
+
+    return enroll_high_school
 
 
-def middle_school_parse(name):
-    request = get_school_webpage_html(name)
+def middle_school_parse(year, name):
+    info = get_middle_school_info(name)
+    request = get_school_web_html(year, info)
 
     status_code = request.status_code
     html = request.text
@@ -124,21 +137,38 @@ def middle_school_parse(name):
         print('파싱성공!!!')
         soup = BeautifulSoup(html, 'html.parser')
         # CSS Selector 를 통해 html 요소들을 찾아낸다.
-        staticstic_number = soup.select('#excel > table.TableType1')
-        # staticstic_percent = soup.select('#excel > table.TableType1')
-        data = get_dict_from_parsed_html(staticstic_number)
-
+        statistics_number = soup.select('#excel > table.TableType1')
+        # statistics_percent = soup.select('#excel > table.TableType1')
+        return get_dict_from_parsed_html(info, year, statistics_number)
 
     else:
         raise Exception('파싱에 실패하였습니다')
 
 
-def get_middle_school_code(name):
-    json_data = open('school.json').read()
+# TODO model 로 빼내기!!
+def get_middle_school_info(name):
+    json_data = open(BASE_DIR + '/school/school.json').read()
     data = json.loads(json_data)
     for item in data['schoolList03']:
         if name == item['SCHUL_NM']:
-            return item['SCHUL_CODE']
+            return item
 
 
-middle_school_parse('삼각산중학교')
+def get_school_code(info):
+    return info['SCHUL_CODE']
+
+
+def get_school_name(info):
+    return info['SCHUL_NM']
+
+
+def get_region_code(info):
+    return info['ADRCD_ID']
+
+
+def get_jibun(info):
+    return info['ADRES_BRKDN'] + " #" + info['DTLAD_BRKDN']
+
+
+def get_road(info):
+    return info['SCHUL_RDNMA']
