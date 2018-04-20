@@ -70,7 +70,7 @@ def school_parser():
 
 # 2. 개별 학교 정보 html 파싱하기
 # http://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?HG_CD=B100005180 삼각산중학교 학교 상세 페이지
-def middle_school_parse(name):
+def get_school_webpage_html(name):
     code = get_middle_school_code(name)
     # HTTP GET Request
     url = 'http://www.schoolinfo.go.kr/ei/pp/Pneipp_b06_s0p.do'
@@ -92,7 +92,31 @@ def middle_school_parse(name):
         'PRE_JG_YEAR': 2017
     }
 
-    request = requests.post(url, data=data)
+    return requests.post(url, data=data)
+
+
+def get_dict_from_parsed_html(staticstic_number):
+    table_data = [[cell.get('title') + ":" + cell.text for cell in row("td") if cell.text]
+                  for row in staticstic_number[0]("tr")]
+    data = []
+    for item in table_data:
+        row = {
+            'sido': None,
+            'gugun': None,
+            'year': None,
+            'school_code': None,
+            'region_code': None
+        }
+        for col in item:
+            string = col.split(":")
+            row.setdefault(string[0], string[1])
+        data.append(row)
+
+    pprint(data)
+
+
+def middle_school_parse(name):
+    request = get_school_webpage_html(name)
 
     status_code = request.status_code
     html = request.text
@@ -100,13 +124,11 @@ def middle_school_parse(name):
         print('파싱성공!!!')
         soup = BeautifulSoup(html, 'html.parser')
         # CSS Selector 를 통해 html 요소들을 찾아낸다.
-        staticstic_number = soup.select(
-            '#excel > table.TableType1'
-        )
-        staticstic_percent = soup.select(
-            '#excel > table.TableType1'
-        )
-        pprint(staticstic_percent)
+        staticstic_number = soup.select('#excel > table.TableType1')
+        # staticstic_percent = soup.select('#excel > table.TableType1')
+        data = get_dict_from_parsed_html(staticstic_number)
+
+
     else:
         raise Exception('파싱에 실패하였습니다')
 

@@ -1,892 +1,704 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html class="no-js" lang="ko"><!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=euc-kr">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<meta property="og:image" content="http://www.schoolinfo.go.kr/common/images/contents/share_alimi.png"/>
-<title>í•™êµì•Œë¦¬ë¯¸(ì´ˆÂ·ì¤‘ë“± êµìœ¡ì •ë³´ ê³µì‹œì„œë¹„ìŠ¤)</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=euc-kr">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta property="og:image" content="http://www.schoolinfo.go.kr/common/images/contents/share_alimi.png"/>
+    <title>ÇÐ±³¾Ë¸®¹Ì(ÃÊ¡¤Áßµî ±³À°Á¤º¸ °ø½Ã¼­ºñ½º)</title>
 
-<link type="text/css" rel="stylesheet" href="/css/common.css"/>
-<link type="text/css" rel="stylesheet" href="/css/layout.css"/>
-<link type="text/css" rel="stylesheet" href="/css/contents.css"/>
-<link type="text/css" rel="stylesheet" href="/css/dev.css"/>
-<link type="text/css" rel="stylesheet" href="/css/jquery.qtip.css"/>
-<!--[if lt IE 9]>
+    <link type="text/css" rel="stylesheet" href="/css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/layout.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/contents.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/dev.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/jquery.qtip.css"/>
+    <!--[if lt IE 9]>
 <script type="text/javascript" src="/share/js/respond.js"></script>
 <script type="text/javascript" src="/share/js/html5.js"></script>
 <script type="text/javascript" src="/share/js/css3-mediaqueries.js"></script>
 <![endif]-->
-<script src="/js/jquery-1.11.2.min.js"></script>
-<script src="/js/jquery.cookie.js"></script>
-<script src="/js/jquery.validate.js"></script>
-<script src="/js/jquery.qtip.js"></script>
-<script src="/js/jquery-ui.js"></script>
-<script src="/js/Common.js"></script>
-<script src="/js/Form.js"></script>
-<script src="/js/Printmade3.js"></script>
+    <script src="/js/jquery-1.11.2.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jquery.validate.js"></script>
+    <script src="/js/jquery.qtip.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/Common.js"></script>
+    <script src="/js/Form.js"></script>
+    <script src="/js/Printmade3.js"></script>
 
-<script type="text/javascript">
-var contextPath = '';
-	
-$(function(){
-	
-	var length = $(".chartList > li").length;
-	if(length == 1){
-		$(".chartList > li").css("width", "100%");
-		$(".chartList > li").css("text-align", "center");
-		$(".chartList > li > div").css("width", "100%");
-	}else if(length == 3){
-		$(".chartList > li:not(:last-child)").css("margin-right", "80px");
-	}
-	
-});	 
-</script>
+    <script type="text/javascript">
+        var contextPath = '';
+
+        $(function () {
+
+            var length = $(".chartList > li").length;
+            if (length == 1) {
+                $(".chartList > li").css("width", "100%");
+                $(".chartList > li").css("text-align", "center");
+                $(".chartList > li > div").css("width", "100%");
+            } else if (length == 3) {
+                $(".chartList > li:not(:last-child)").css("margin-right", "80px");
+            }
+
+        });
+    </script>
 </head>
 <body>
 
 
-
 <script type="text/javascript">
-$(function(){
-	if(2017 !=  2017 ) {
-		$("#select_trans_dt").focus();
-	}
-});
+    $(function () {
+        if (2017 != 2017) {
+            $("#select_trans_dt").focus();
+        }
+    });
 
-var cnt = getCurrentTime();
-var hg_jongryu_gb = "3";
-var pop = "";
+    var cnt = getCurrentTime();
+    var hg_jongryu_gb = "3";
+    var pop = "";
 
-function goJipyo(hg_course_gb){
-	var str = hg_course_gb;
-	var frm;
-	cnt++;	
-	
-	setTransDt(str);
-	
-	if(str == "3") {
-		frm = document.goJipyoForm01;
-	} else if(str == "4") {
-		frm = document.goJipyoForm02;
-	}	
-	
-	if(hg_jongryu_gb == "5")
-	{
-		frm.HG_COURSE_GB.value = hg_course_gb;
-	}
-	else
-	{
-		frm.HG_COURSE_GB.value = hg_jongryu_gb;
-	}
-	
-	popWin = openwin('about:blank','popWin'+cnt,'905','700','yes',true);
-	frm.target = "popWin"+cnt;
-	frm.action = "/ei/ss/Pneiss_a03_s0p.do";
-	frm.submit();
+    function goJipyo(hg_course_gb) {
+        var str = hg_course_gb;
+        var frm;
+        cnt++;
 
-	if(pop == "Y"){
-		parent.close();
-	}
-}
+        setTransDt(str);
 
-function setTransDt(str){
-	
-	var num = str;
-	var frm;
-	
-	if(num == "3") {
-		frm = document.goJipyoForm01;
-	} else if(num == "4") {
-		frm = document.goJipyoForm02;
-	}
-	
-	var obj = document.getElementById("select_trans_dt");
-	
-	for(var i=0 ; i<obj.options.length ; i++)
-	{
-		if(obj.options[i].selected == true)
-		{
-			frm.TRANS_DT.value = obj.options[i].text;
-			break;
-		}
-	}
-}
-//ì—‘ì…€ì¶œë ¥ ìŠ¤í¬ë¦½íŠ¸
-function open_excel(){
-	var excel = document.getElementById("excelprint");
-	excel.ExcelData.value = $('#excel').html();
-	excel.submit();
-}
+        if (str == "3") {
+            frm = document.goJipyoForm01;
+        } else if (str == "4") {
+            frm = document.goJipyoForm02;
+        }
+
+        if (hg_jongryu_gb == "5") {
+            frm.HG_COURSE_GB.value = hg_course_gb;
+        }
+        else {
+            frm.HG_COURSE_GB.value = hg_jongryu_gb;
+        }
+
+        popWin = openwin('about:blank', 'popWin' + cnt, '905', '700', 'yes', true);
+        frm.target = "popWin" + cnt;
+        frm.action = "/ei/ss/Pneiss_a03_s0p.do";
+        frm.submit();
+
+        if (pop == "Y") {
+            parent.close();
+        }
+    }
+
+    function setTransDt(str) {
+
+        var num = str;
+        var frm;
+
+        if (num == "3") {
+            frm = document.goJipyoForm01;
+        } else if (num == "4") {
+            frm = document.goJipyoForm02;
+        }
+
+        var obj = document.getElementById("select_trans_dt");
+
+        for (var i = 0; i < obj.options.length; i++) {
+            if (obj.options[i].selected == true) {
+                frm.TRANS_DT.value = obj.options[i].text;
+                break;
+            }
+        }
+    }
+
+    //¿¢¼¿Ãâ·Â ½ºÅ©¸³Æ®
+    function open_excel() {
+        var excel = document.getElementById("excelprint");
+        excel.ExcelData.value = $('#excel').html();
+        excel.submit();
+    }
 </script>
-<noscript><p>JavaScriptë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ì¼ë¶€ ì½˜í…ì¸ ê°€ ì •ìƒì ìœ¼ë¡œ ìž‘ë™í•˜ì§€ ì•Šì„ ê°€ëŠ¥ì„±ì´ ìžˆìŠµë‹ˆë‹¤.</p></noscript>
+<noscript><p>JavaScript¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. ÀÏºÎ ÄÜÅÙÃ÷°¡ Á¤»óÀûÀ¸·Î ÀÛµ¿ÇÏÁö ¾ÊÀ» °¡´É¼ºÀÌ ÀÖ½À´Ï´Ù.</p></noscript>
 <form id="srcForm" name="srcForm" method="post" action="/ei/pp/Pneipp_b06_s0p.do">
-	<input type="hidden" name="HG_CD" value="B100005180" />
-	<input type="hidden" name="HG_NM" value="ì‚¼ê°ì‚°ì¤‘í•™êµ" />
-	<input type="hidden" name="GS_BURYU_CD" value="JG040" />
-	<input type="hidden" name="GS_HANGMOK_CD" value="06" />
-	<input type="hidden" name="JG_BURYU_CD" value="JG130" />
-	<input type="hidden" name="JG_HANGMOK_CD" value="52" />
-	<input type="hidden" name="GS_HANGMOK_NO" value="13-ë‹¤" />
-	<input type="hidden" name="GS_HANGMOK_NM" value="ì¡¸ì—…ìƒì˜ ì§„ë¡œ í˜„í™©" />
-	<input type="hidden" name="JG_YEAR" value="2017" />
-	<input type="hidden" name="JG_CHASU" value="2" />
-	<input type="hidden" name="adminYN" value="N"/>
-	<input type="hidden" name="SORT" value="BR" />
-	<input type="hidden" name="POP_YN" value=""/>
-	<input type="hidden" name="PRE_JG_YEAR" value="2017" />
+    <input type="hidden" name="HG_CD" value="B100005180"/>
+    <input type="hidden" name="HG_NM" value="»ï°¢»êÁßÇÐ±³"/>
+    <input type="hidden" name="GS_BURYU_CD" value="JG040"/>
+    <input type="hidden" name="GS_HANGMOK_CD" value="06"/>
+    <input type="hidden" name="JG_BURYU_CD" value="JG130"/>
+    <input type="hidden" name="JG_HANGMOK_CD" value="52"/>
+    <input type="hidden" name="GS_HANGMOK_NO" value="13-´Ù"/>
+    <input type="hidden" name="GS_HANGMOK_NM" value="Á¹¾÷»ýÀÇ Áø·Î ÇöÈ²"/>
+    <input type="hidden" name="JG_YEAR" value="2017"/>
+    <input type="hidden" name="JG_CHASU" value="2"/>
+    <input type="hidden" name="adminYN" value="N"/>
+    <input type="hidden" name="SORT" value="BR"/>
+    <input type="hidden" name="POP_YN" value=""/>
+    <input type="hidden" name="PRE_JG_YEAR" value="2017"/>
 </form>
-<!-- ì¸ê·¼ì§€ì—­ í•™êµë¹„êµ í¼ ì¶”ê°€ -->
-<form id="goJipyoForm01" name="goJipyoForm01" method="post" >
-	<input type="hidden" name="HG_CD" value="B100005180" />
-	<input type="hidden" name="HG_NM" value="ì‚¼ê°ì‚°ì¤‘í•™êµ" />
-	<input type="hidden" name="HG_JONGRYU_GB" value="03" />
-	<input type="hidden" name="HG_COURSE_GB" value="" />
-	<input type="hidden" name="HIGH_JONGRYU_GB" value="" />
-	<input type="hidden" name="GS_BURYU_CD" value="JG040" />
-	<input type="hidden" name="GS_HANGMOK_CD" value="06" />	
-	<input type="hidden" name="JG_BURYU_CD" value="JG130" />	
-	<input type="hidden" name="JG_BURYU_NM" value="null" />	
-	<input type="hidden" name="JG_HANGMOK_CD" value="52" />
-	<input type="hidden" name="GS_HANGMOK_NO" value="13-ë‹¤" />
-	<input type="hidden" name="GS_HANGMOK_NM" value="ì¡¸ì—…ìƒì˜ ì§„ë¡œ í˜„í™©" />
-	<input type="hidden" name="JG_YEAR" value="2017" />
-	<input type="hidden" name="JG_CHASU" value="2" />
-	<input type="hidden" name="TRANS_DT" value="" />
+<!-- ÀÎ±ÙÁö¿ª ÇÐ±³ºñ±³ Æû Ãß°¡ -->
+<form id="goJipyoForm01" name="goJipyoForm01" method="post">
+    <input type="hidden" name="HG_CD" value="B100005180"/>
+    <input type="hidden" name="HG_NM" value="»ï°¢»êÁßÇÐ±³"/>
+    <input type="hidden" name="HG_JONGRYU_GB" value="03"/>
+    <input type="hidden" name="HG_COURSE_GB" value=""/>
+    <input type="hidden" name="HIGH_JONGRYU_GB" value=""/>
+    <input type="hidden" name="GS_BURYU_CD" value="JG040"/>
+    <input type="hidden" name="GS_HANGMOK_CD" value="06"/>
+    <input type="hidden" name="JG_BURYU_CD" value="JG130"/>
+    <input type="hidden" name="JG_BURYU_NM" value="null"/>
+    <input type="hidden" name="JG_HANGMOK_CD" value="52"/>
+    <input type="hidden" name="GS_HANGMOK_NO" value="13-´Ù"/>
+    <input type="hidden" name="GS_HANGMOK_NM" value="Á¹¾÷»ýÀÇ Áø·Î ÇöÈ²"/>
+    <input type="hidden" name="JG_YEAR" value="2017"/>
+    <input type="hidden" name="JG_CHASU" value="2"/>
+    <input type="hidden" name="TRANS_DT" value=""/>
 
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305220" />
-	<input type="hidden" name="JIPYO_NM"  value="ì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="MI_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />
+    <input type="hidden" name="JIPYO_CD" value="JG1305220"/>
+    <input type="hidden" name="JIPYO_NM" value="ÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="MI_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305221" />
-	<input type="hidden" name="JIPYO_NM"  value="ì¼ë°˜ê³ ì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="GNRL_ORD_HS_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />
+    <input type="hidden" name="JIPYO_CD" value="JG1305221"/>
+    <input type="hidden" name="JIPYO_NM" value="ÀÏ¹Ý°íÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="GNRL_ORD_HS_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305222" />
-	<input type="hidden" name="JIPYO_NM"  value="íŠ¹ì„±í™”ê³ ì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="CHRTR_ORD_HS_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />
+    <input type="hidden" name="JIPYO_CD" value="JG1305222"/>
+    <input type="hidden" name="JIPYO_NM" value="Æ¯¼ºÈ­°íÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="CHRTR_ORD_HS_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305223" />
-	<input type="hidden" name="JIPYO_NM"  value="íŠ¹ìˆ˜ëª©ì ê³ ì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="SPCLY_ORD_HS_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />
+    <input type="hidden" name="JIPYO_CD" value="JG1305223"/>
+    <input type="hidden" name="JIPYO_NM" value="Æ¯¼ö¸ñÀû°íÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="SPCLY_ORD_HS_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305224" />
-	<input type="hidden" name="JIPYO_NM"  value="ìžìœ¨ê³ ì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="SLCTL_ORD_HS_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />
+    <input type="hidden" name="JIPYO_CD" value="JG1305224"/>
+    <input type="hidden" name="JIPYO_NM" value="ÀÚÀ²°íÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="SLCTL_ORD_HS_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305225" />
-	<input type="hidden" name="JIPYO_NM"  value="ê¸°íƒ€(%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="ETC_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />
+    <input type="hidden" name="JIPYO_CD" value="JG1305225"/>
+    <input type="hidden" name="JIPYO_NM" value="±âÅ¸(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="ETC_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="SULRIP_GB" value="1" />
+    <input type="hidden" name="SULRIP_GB" value="1"/>
 
-	<input type="hidden" name="SULRIP_GB" value="2" />
+    <input type="hidden" name="SULRIP_GB" value="2"/>
 
-	<input type="hidden" name="SULRIP_GB" value="3" />
-	
-	
-	<input type="hidden" name="adminYN" value="N" />
-	<input type="hidden" name="SORT" value="BR" />
-	<input type="hidden" name="POP_YN" value=""/>
+    <input type="hidden" name="SULRIP_GB" value="3"/>
+
+
+    <input type="hidden" name="adminYN" value="N"/>
+    <input type="hidden" name="SORT" value="BR"/>
+    <input type="hidden" name="POP_YN" value=""/>
 </form>
 <form id="goJipyoForm02" name="goJipyoForm02" method="post">
-	<input type="hidden" name="HG_CD" value="B100005180" />
-	<input type="hidden" name="HG_NM" value="ì‚¼ê°ì‚°ì¤‘í•™êµ" />
-	<input type="hidden" name="HG_JONGRYU_GB" value="03" />
-	<input type="hidden" name="HG_COURSE_GB" value="" />
-	<input type="hidden" name="HIGH_JONGRYU_GB" value="" />
-	<input type="hidden" name="GS_BURYU_CD" value="JG040" />
-	<input type="hidden" name="GS_HANGMOK_CD" value="06" />	
-	<input type="hidden" name="JG_BURYU_CD" value="JG130" />	
-	<input type="hidden" name="JG_BURYU_NM" value="null" />	
-	<input type="hidden" name="JG_HANGMOK_CD" value="52" />
-	<input type="hidden" name="GS_HANGMOK_NO" value="13-ë‹¤" />
-	<input type="hidden" name="GS_HANGMOK_NM" value="ì¡¸ì—…ìƒì˜ ì§„ë¡œ í˜„í™©" />
-	<input type="hidden" name="JG_YEAR" value="2017" />
-	<input type="hidden" name="JG_CHASU" value="2" />
-	<input type="hidden" name="TRANS_DT" value="" />
+    <input type="hidden" name="HG_CD" value="B100005180"/>
+    <input type="hidden" name="HG_NM" value="»ï°¢»êÁßÇÐ±³"/>
+    <input type="hidden" name="HG_JONGRYU_GB" value="03"/>
+    <input type="hidden" name="HG_COURSE_GB" value=""/>
+    <input type="hidden" name="HIGH_JONGRYU_GB" value=""/>
+    <input type="hidden" name="GS_BURYU_CD" value="JG040"/>
+    <input type="hidden" name="GS_HANGMOK_CD" value="06"/>
+    <input type="hidden" name="JG_BURYU_CD" value="JG130"/>
+    <input type="hidden" name="JG_BURYU_NM" value="null"/>
+    <input type="hidden" name="JG_HANGMOK_CD" value="52"/>
+    <input type="hidden" name="GS_HANGMOK_NO" value="13-´Ù"/>
+    <input type="hidden" name="GS_HANGMOK_NM" value="Á¹¾÷»ýÀÇ Áø·Î ÇöÈ²"/>
+    <input type="hidden" name="JG_YEAR" value="2017"/>
+    <input type="hidden" name="JG_CHASU" value="2"/>
+    <input type="hidden" name="TRANS_DT" value=""/>
 
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305226" />
-	<input type="hidden" name="JIPYO_NM"  value="ì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="HG_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />	
+    <input type="hidden" name="JIPYO_CD" value="JG1305226"/>
+    <input type="hidden" name="JIPYO_NM" value="ÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="HG_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305227" />
-	<input type="hidden" name="JIPYO_NM"  value="ì „ë¬¸ëŒ€í•™êµì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="JNCLL_UNIV_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />	
+    <input type="hidden" name="JIPYO_CD" value="JG1305227"/>
+    <input type="hidden" name="JIPYO_NM" value="Àü¹®´ëÇÐ±³ÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="JNCLL_UNIV_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305228" />
-	<input type="hidden" name="JIPYO_NM"  value="ëŒ€í•™êµì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="UNIV_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />	
+    <input type="hidden" name="JIPYO_CD" value="JG1305228"/>
+    <input type="hidden" name="JIPYO_NM" value="´ëÇÐ±³ÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="UNIV_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305229" />
-	<input type="hidden" name="JIPYO_NM"  value="êµ­ì™¸ì§„í•™ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="OCNTY_ERTDS_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />	
+    <input type="hidden" name="JIPYO_CD" value="JG1305229"/>
+    <input type="hidden" name="JIPYO_NM" value="±¹¿ÜÁøÇÐ·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="OCNTY_ERTDS_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305230" />
-	<input type="hidden" name="JIPYO_NM"  value="ì·¨ì—…ë¥ (%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="EMPLO_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />	
+    <input type="hidden" name="JIPYO_CD" value="JG1305230"/>
+    <input type="hidden" name="JIPYO_NM" value="Ãë¾÷·ü(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="EMPLO_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="JIPYO_CD" value="JG1305231" />
-	<input type="hidden" name="JIPYO_NM"  value="ê¸°íƒ€(%)" />
-	<input type="hidden" name="JIPYO_COLUMN"  value="ETC_RAT" />
-	<input type="hidden" name="JIPYO_DANWI"  value="" />	
+    <input type="hidden" name="JIPYO_CD" value="JG1305231"/>
+    <input type="hidden" name="JIPYO_NM" value="±âÅ¸(%)"/>
+    <input type="hidden" name="JIPYO_COLUMN" value="ETC_RAT"/>
+    <input type="hidden" name="JIPYO_DANWI" value=""/>
 
-	<input type="hidden" name="SULRIP_GB" value="1">
+    <input type="hidden" name="SULRIP_GB" value="1">
 
-	<input type="hidden" name="SULRIP_GB" value="2">
+    <input type="hidden" name="SULRIP_GB" value="2">
 
-	<input type="hidden" name="SULRIP_GB" value="3">
+    <input type="hidden" name="SULRIP_GB" value="3">
 
-	<input type="hidden" name="adminYN" value="N"/>
-	<input type="hidden" name="SORT" value="BR" />
-	<input type="hidden" name="POP_YN" value=""/>
+    <input type="hidden" name="adminYN" value="N"/>
+    <input type="hidden" name="SORT" value="BR"/>
+    <input type="hidden" name="POP_YN" value=""/>
 </form>
 <form id="excelprint" name="excelprint" method="post" action="/cm/include/ExcelPrint.do">
-	<input type="hidden" name="ExcelData" value="" />
-	<input type="hidden" name="excelname" value="ì¡¸ì—…ìƒì˜ì§„ë¡œí˜„í™©" />
+    <input type="hidden" name="ExcelData" value=""/>
+    <input type="hidden" name="excelname" value="Á¹¾÷»ýÀÇÁø·ÎÇöÈ²"/>
 </form>
-			<!-- ê³µì‹œí•­ëª© ì„¸ë¶€ì‚¬í•­ -->
-			<article class="Item_Section">
-				<h2 class="Item_Title Type2">13-ë‹¤. ì¡¸ì—…ìƒì˜ ì§„ë¡œ í˜„í™©</h2>
-				<div class="SectionBtn">
-					<!-- <div class="Button Type2 Like"><a href="">ì¢‹ì•„ìš” <span>84</span></a></div> -->
-					<!-- ì¢‹ì•„ìš” ì„ íƒí–ˆì„ ê²½ìš° ; <div class="Button Type2 Like_Select"><a href="">ì¢‹ì•„ìš” <span>84</span></a></div> -->
-					<div class="Button Type1 Download"><a href="#" onclick="open_excel()">ì—‘ì…€ ë‹¤ìš´ë¡œë“œ</a></div>
-					<!-- <div class="Button Type1 Print"><a href="">ì¸ì‡„í•˜ê¸°</a></div> -->
-					
+<!-- °ø½ÃÇ×¸ñ ¼¼ºÎ»çÇ× -->
+<article class="Item_Section">
+    <h2 class="Item_Title Type2">13-´Ù. Á¹¾÷»ýÀÇ Áø·Î ÇöÈ²</h2>
+    <div class="SectionBtn">
+        <!-- <div class="Button Type2 Like"><a href="">ÁÁ¾Æ¿ä <span>84</span></a></div> -->
+        <!-- ÁÁ¾Æ¿ä ¼±ÅÃÇßÀ» °æ¿ì ; <div class="Button Type2 Like_Select"><a href="">ÁÁ¾Æ¿ä <span>84</span></a></div> -->
+        <div class="Button Type1 Download"><a href="#" onclick="open_excel()">¿¢¼¿ ´Ù¿î·Îµå</a></div>
+        <!-- <div class="Button Type1 Print"><a href="">ÀÎ¼âÇÏ±â</a></div> -->
 
 
+        <script type="text/javascript" src="/js/Printmade3.js"></script>
 
+        <div class="Button Type1 Print"><a href="#" onclick='PTMPrintWebPage({frame_name:"pneipp_frame"})' title="ÀÎ¼âÇÏ±â">ÀÎ¼âÇÏ±â</a>
+        </div><!--ÀÏ¹ÝÇ×¸ñ  -->
 
 
+        <!-- <div class="Button Type2 Before"><a href="">Àü³âµµºñ±³</a></div> -->
+        <div class="Button Time">
+            <span class="TimeTitle">ÀÚ·á±âÁØ³â¿ù</span>
 
 
+            <script type="text/javascript">
+                <!--
+                var focusChk = 0;
 
+                function chgSelect(obj) {
+                    var frm = document.getElementById('srcForm');
+                    var index = obj.selectedIndex;
 
+                    /*
+                    frm.JG_YEAR.value = obj[index].JG_YEAR;
+                    frm.JG_CHASU.value = obj[index].JG_CHASU;
+                    */
 
+                    var str = obj[index].value;
 
+                    frm.JG_YEAR.value = str.substring(0, 4);
+                    frm.JG_CHASU.value = str.substring(4);
 
-
-
-
-
-
-
-
-
-
-
-
-
- <script type="text/javascript" src="/js/Printmade3.js"></script>
-    
-	  <div class="Button Type1 Print"><a href="#" onclick='PTMPrintWebPage({frame_name:"pneipp_frame"})' title="ì¸ì‡„í•˜ê¸°">ì¸ì‡„í•˜ê¸°</a></div><!--ì¼ë°˜í•­ëª©  -->
-    
-
-					<!-- <div class="Button Type2 Before"><a href="">ì „ë…„ë„ë¹„êµ</a></div> -->
-					<div class="Button Time">
-						<span class="TimeTitle">ìžë£Œê¸°ì¤€ë…„ì›”</span>
-						
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-<!--
-	var focusChk = 0;
-	function chgSelect(obj)
-	{
-		var frm = document.getElementById('srcForm');
-		var index = obj.selectedIndex;
-		
-		/*
-		frm.JG_YEAR.value = obj[index].JG_YEAR;
-		frm.JG_CHASU.value = obj[index].JG_CHASU;
-		*/
-		
-		var str = obj[index].value;
-		
-		frm.JG_YEAR.value = str.substring(0,4);
-		frm.JG_CHASU.value = str.substring(4);
-
-		frm.submit();
-	}
-	function focus_event() {
-		if(focusChk == 0) {
-			$("#select_trans_dt").focus();
-			focusChk++;
-		}
-	}
-//-->
-</script>
-<select name="select_trans_dt" id="select_trans_dt" class="select01" onchange="chgSelect(this)" onblur="focus_event()" tabindex="1" title="ê³µì‹œë…„ì›” ì„ íƒ" >
-
-  <option value="20172" selected>2017ë…„ 05ì›”</option>
-
-  <option value="20163" >2016ë…„ 05ì›”</option>
-
-  <option value="20153" >2015ë…„ 05ì›”</option>
-
-</select>
-
-						<!-- 
-						<select title="ìžë£Œê¸°ì¤€ë…„ì›” ì„ íƒ">
-							<option value="">2015ë…„ 4ì›”</option>
-							<option value="">2014ë…„ 4ì›”</option>
-							<option value="">2013ë…„ 4ì›”</option>
-							<option value="">2012ë…„ 4ì›”</option>
-						</select>
-						<button type="submit" id="" title=""><span>ê²€ìƒ‰</span></button>
-						 -->
-					</div>
-				</div>
-				<div class="DataArea">
-					<!-- ê·¸ëž˜í”„ì˜ì—­ -->
-				
-				<!-- ì‚¬ìš©ìžê°€ ì„ íƒí•œ Max ì—°ë„ì— ê³µì‹œìžë£Œê°€ ì—†ìœ¼ë©´ ìžë£Œê°€ ìžˆëŠ” ê°€ìž¥ ìµœê·¼ ì—°ë„ì˜ ê³µì‹œìžë£Œë¥¼ ë³´ì—¬ì¤€ë‹¤ëŠ” ë„ì›€ë§ ì¶œë ¥ -->
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				
-			
-		<ul class="chartList" tabindex="-1">
-			<li>
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 	
-<h3></h3>
-    <div class="chart1"></div>
-    <script type="text/javascript" src="/js/webponent.licenseKey.js"></script>
-    <script type="text/javascript" src="/js/raphael.js?ran=6151469"></script>
-    <script type="text/javascript" src="/js/webponent.comm.common.js?ran=1009972"></script>
-	<script type="text/javascript" src="/js/webponent.chart.js?ran=8867179"></script>
-	<script type="text/javascript" src="/js/webponent.visual.pie.js?ran=1992802"></script>
-    <script>
-  	//<![CDATA[
-             
-    	$("head").append("<style>.chart1{width:820px; height: 600px; border: 1px solid #eee;}</style>");
-        var options = {
-            data: {
-                data: [
-                 
-                {
-                    Date: 'ì¼ë°˜ê³ ',
-                    price: '242',
-                    legend: 'ì¼ë°˜ê³ '
-                
-                },    
-                {
-                    Date: 'íŠ¹ì„±í™”ê³ ',
-                    price: '20',
-                    legend: 'íŠ¹ì„±í™”ê³ '
-                
-                },    
-                {
-                    Date: '[íŠ¹ìˆ˜ëª©ì ê³ ] ê³¼í•™ê³ ',
-                    price: '4',
-                    legend: '[íŠ¹ìˆ˜ëª©ì ê³ ] ê³¼í•™ê³ '
-                
-                },    
-                {
-                    Date: '[íŠ¹ìˆ˜ëª©ì ê³ ] ì™¸ê³ êµ­ì œê³ ',
-                    price: '13',
-                    legend: '[íŠ¹ìˆ˜ëª©ì ê³ ] ì™¸ê³ êµ­ì œê³ '
-                
-                },    
-                {
-                    Date: '[íŠ¹ìˆ˜ëª©ì ê³ ] ì˜ˆê³ ì²´ê³ ',
-                    price: '1',
-                    legend: '[íŠ¹ìˆ˜ëª©ì ê³ ] ì˜ˆê³ ì²´ê³ '
-                
-                },    
-                {
-                    Date: '[íŠ¹ìˆ˜ëª©ì ê³ ] ë§ˆì´ìŠ¤í„°ê³ ',
-                    price: '2',
-                    legend: '[íŠ¹ìˆ˜ëª©ì ê³ ] ë§ˆì´ìŠ¤í„°ê³ '
-                
-                },    
-                {
-                    Date: '[ìžìœ¨ê³ ] ìžìœ¨í˜•ì‚¬ë¦½ê³ ',
-                    price: '70',
-                    legend: '[ìžìœ¨ê³ ] ìžìœ¨í˜•ì‚¬ë¦½ê³ '
-                
-                },    
-                {
-                    Date: '[ìžìœ¨ê³ ] ìžìœ¨í˜•ê³µë¦½ê³ ',
-                    price: '1',
-                    legend: '[ìžìœ¨ê³ ] ìžìœ¨í˜•ê³µë¦½ê³ '
-                
-                },    
-                {
-                    Date: 'ê¸°íƒ€',
-                    price: '0',
-                    legend: 'ê¸°íƒ€'
-                
-                },    
-                {
-                    Date: 'ì·¨ì—…ìž',
-                    price: '0',
-                    legend: 'ì·¨ì—…ìž'
-                
-                },    
-                {
-                    Date: '[ë¬´ì§ìž ë° ë¯¸ìƒ]',
-                    price: '0',
-                    legend: '[ë¬´ì§ìž ë° ë¯¸ìƒ]'
-                
-                },    ],
-                use: 'price'
-                
-            },
-            legend: {
-            	func : function(pie){
-            		 var legend=[];
-            		 var dataTotalValue = pie.settings.data.dataTotalValue;
-            		 var data = pie.settings.data.renderedData;
-            		 for(var i = 0; i< data.length; i++){
-            			 var per = Math.round(100 / dataTotalValue * data[i].price);
-            			 var date = data[i].Date;
-            			 var price = data[i].price;
-            			 legend.push(date+ priceDataFormat(price) +'ëª…'+'('+per +'%)');
-            			 
-            		 }
-            		 return legend;
-            	}
-            },
-            toolTip: {
-                use: true,
-                position: {
-                    x: 0,
-                    y: 0
-                },
-                func: function(pie, data, tipElement) {
-
-                    var dataTotalValue = pie.settings.data.dataTotalValue;
-                    var date = data.Date;
-                    var setData = Math.round(100 / dataTotalValue) + '%';
-                    var tip = '<div class="text">' + date + 
-                   '<br/> í•™ìƒ '+String(data.price).format().trim() + 'ëª…'+ '</div>';
-                    var arrow = '<div class="arrow" style="width: ' +
-                        tipElement.width() + 'px;"></div>';
-
-                    tipElement.html(tip);
-                    tipElement.html(tipElement.html() + arrow);
+                    frm.submit();
                 }
-            }
-            
-        };
 
-        var styles = {
-        	layout : {
-        		position : {
-        			y : 5
-        		}
-        	},
-        	pie : {
-        		area : {
-        			color : [
-					'#4DB5AF','#F6AB60','#EB785D','#4DB550','#6661C3','#4DB5AF','#F6AB60','#EB785D','#4DB550','#6661C3','#4DB5AF','#F6AB60','#EB785D','#4DB550','#6661C3'
-        			]
-        		}
-        	},
-        	base : {
-        	}
+                function focus_event() {
+                    if (focusChk == 0) {
+                        $("#select_trans_dt").focus();
+                        focusChk++;
+                    }
+                }
 
-        };
-		//alert(options.data.data[1].price);
-        pie = webponent.visual.pie.init($(".chart1"), styles, options);
-    //]]>
-    </script>
+                //-->
+            </script>
+            <select name="select_trans_dt" id="select_trans_dt" class="select01" onchange="chgSelect(this)"
+                    onblur="focus_event()" tabindex="1" title="°ø½Ã³â¿ù ¼±ÅÃ">
 
+                <option value="20172" selected>2017³â 05¿ù</option>
 
-			</li>
-		</ul>
+                <option value="20163">2016³â 05¿ù</option>
 
-					<!-- ê·¸ëž˜í”„ì˜ì—­ ë -->
-					
-					<!-- ì—‘ì…€ ì¶œë ¥ ë²”ìœ„ ì„¤ì •  -->
-					<div class="DataTable" id="excel">
-					<!-- í…Œì´ë¸”ì˜ì—­ -->
+                <option value="20153">2015³â 05¿ù</option>
 
-			<div class="TableTitle">
-        		
-        	<div class="TableTxt2">(ë‹¨ìœ„: ëª…, %)</div>
-        	</div>
-			
-						<table class="TableType1" summary="ì¡¸ì—…ìƒì˜ ì§„ë¡œí˜„í™©">
-							<caption>ì¡¸ì—…ìƒì˜ ì§„ë¡œí˜„í™©</caption>
-							<thead>
-							<tr>
-								<th colspan="16">2017í•™ë…„ë„</th>
-							</tr>
-				            <tr>
-				              <th rowspan="3" style="width:4%">êµ¬&nbsp;&nbsp;ë¶„</th>
-				              <th rowspan="3" style="width:4%">ì¡¸ì—…ìž</th>
-				              <th colspan="12">ì§„í•™ìž</th>
-				              <th rowspan="3" style="width:4%">ì·¨ì—…ìž</th>
-				              <th rowspan="3" style="width:4%">ë¬´ì§ìž ë° ë¯¸ìƒ</th>
-				            </tr>
-				            <tr>
-				              <th rowspan="2"   style="width:4%">ì¼ë°˜ê³ </th>
-				              <th rowspan="2"  style="width:4%">íŠ¹ì„±í™”ê³ </th>
-				              <th colspan="5" >íŠ¹ìˆ˜ëª©ì ê³ </th>
-				              <th colspan="3" >ìžìœ¨ê³ </th>
-				              <th rowspan="2"  style="width:4%">ê¸°íƒ€</th>
-				              <th rowspan="2"  style="width:4%">ì§„í•™ìžê³„</th>
-				            </tr>
-				            <tr>
-				              <th  style="width:4%">ê³¼í•™ê³ </th>
-				              <th  style="width:4%">ì™¸ê³ êµ­ì œê³ </th>
-				              <th  style="width:4%">ì˜ˆê³ ì²´ê³ </th>
-				              <th  style="width:4%">ë§ˆì´ìŠ¤í„°ê³ </th>
-				              <th  style="width:4%">ì†Œê³„</th>
-				              <th  style="width:4%">ìžìœ¨í˜•ì‚¬ë¦½ê³ </th>
-				              <th  style="width:4%">ìžìœ¨í˜•ê³µë¦½ê³ </th>
-				              <th  style="width:4%">ì†Œê³„</th>
-				              
-				              
-				            </tr>
-				            </thead>
-							<tbody>
-				            <tr>
-				              <th >ë‚¨</th>
-				              <td  title="ì¡¸ì—…ìž" >187</td>
-				              <td  title="ì§„í•™ìž ì¼ë°˜ê³ " >112</td>
-				              <td  title="ì§„í•™ìž íŠ¹ì„±í™”ê³ " >7</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ê³¼í•™ê³ " >4</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì™¸ê³ êµ­ì œê³ " >2</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì˜ˆê³ ì²´ê³ " >1</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ë§ˆì´ìŠ¤í„°ê³ " >1</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì†Œê³„" >8</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ìžìœ¨í˜•ì‚¬ë¦½ê³ " >59</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ìžìœ¨í˜•ê³µë¦½ê³ " >1</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ì†Œê³„" >60</td>
-				              <td  title="ì§„í•™ìž ê¸°íƒ€" >0</td>
-				              <td  title="ì§„í•™ìž ì§„í•™ìžê³„" >187</td>
-				              <td  title="ì·¨ì—…ìž" >0</td>
-				              <td  title="ë¬´ì§ ë° ë¯¸ìƒ" >0</td>
-				            </tr>
-				            <tr>
-				              <th >ì—¬</th>
-				              <td  title="ì¡¸ì—…ìž" >166</td>
-				              <td  title="ì§„í•™ìž ì¼ë°˜ê³ " >130</td>
-				              <td  title="ì§„í•™ìž íŠ¹ì„±í™”ê³ " >13</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ê³¼í•™ê³ " >0</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì™¸ê³ êµ­ì œê³ " >11</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì˜ˆê³ ì²´ê³ " >0</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ë§ˆì´ìŠ¤í„°ê³ " >1</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì†Œê³„" >12</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ìžìœ¨í˜•ì‚¬ë¦½ê³ " >11</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ìžìœ¨í˜•ê³µë¦½ê³ " >0</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ì†Œê³„" >11</td>
-				              <td  title="ì§„í•™ìž ê¸°íƒ€" >0</td>
-				              <td  title="ì§„í•™ìž ì§„í•™ìžê³„" >166</td>
-				              <td  title="ì·¨ì—…ìž" >0</td>
-				              <td  title="ë¬´ì§ ë° ë¯¸ìƒ" >0</td>
-				            </tr>
-				            <tr>
-				              <th >í•©ê³„</th>
-				              <td  title="ì¡¸ì—…ìž" >353</td>
-				              <td  title="ì§„í•™ìž ì¼ë°˜ê³ " >242</td>
-				              <td  title="ì§„í•™ìž íŠ¹ì„±í™”ê³ " >20</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ê³¼í•™ê³ " >4</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì™¸ê³ êµ­ì œê³ " >13</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì˜ˆê³ ì²´ê³ " >1</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ë§ˆì´ìŠ¤í„°ê³ " >2</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì†Œê³„" >20</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ìžìœ¨í˜•ì‚¬ë¦½ê³ " >70</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ìžìœ¨í˜•ê³µë¦½ê³ " >1</td>
-				              <td  title="ì§„í•™ìž ìžìœ¨ê³  ì†Œê³„" >71</td>
-				              <td  title="ì§„í•™ìž ê¸°íƒ€" >0</td>
-				              <td  title="ì§„í•™ìž ì§„í•™ìžê³„" >353</td>
-				              <td  title="ì·¨ì—…ìž" >0</td>
-				              <td  title="ë¬´ì§ ë° ë¯¸ìƒ" >0</td>
-				            </tr>
-				            <tr>
-				              <th >ë¹„&nbsp;&nbsp;ìœ¨</th>
-				              <td ></td>
-				              <td  title="ì§„í•™ìž ì¼ë°˜ê³ " >68.6</td>
-				              <td  title="ì§„í•™ìž íŠ¹ì„±í™”ê³ " >5.7</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ê³¼í•™ê³ " >1.1</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì™¸ê³ êµ­ì œê³ " >3.7</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ì˜ˆê³ ì²´ê³ " >0.3</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ë§ˆì´ìŠ¤í„°ê³ " >0.6</td>
-				               <td  title="ì§„í•™ìž ìžìœ¨ê³  ì†Œê³„" >5.7</td>
-				              <td  title="ì§„í•™ìž íŠ¹ìˆ˜ëª©ì ê³  ë§ˆì´ìŠ¤í„°ê³ " >19.8</td>
-				               <td  title="ì§„í•™ìž ìžìœ¨ê³  ìžìœ¨í˜•ê³µë¦½ê³ " >0.3</td>
-				               <td  title="ì§„í•™ìž ìžìœ¨ê³  ì†Œê³„" >20.1</td>
-				             <td  title="ì§„í•™ìž ê¸°íƒ€" >0.0</td>
-				              <td  title="ì§„í•™ìž ì§„í•™ìžê³„" >100.0</td>
-				              <td  title="ì·¨ì—…ìž" >0.0</td>
-				              <td  title="ë¬´ì§ ë° ë¯¸ìƒ" >0.0</td>
-				            </tr>
-							</tbody>
-						</table>
-						
-						<!-- ì§€ì—­/ì‹œë„ í‰ê·  -->
-						<table class="TableType2">
-    				<caption>ì¡¸ì—…ìƒì˜ ì§„ë¡œí˜„í™©</caption>
-    					<thead>
-    				 	<tr>
-    				 		<th colspan="2">êµ¬&nbsp;&nbsp;ë¶„</th>
-    				 		<th>ì§„í•™ë¥ (%)</th>
-    				 		<th>ì¼ë°˜ê³ ì§„í•™ë¥ (%)</th>
-    				 		<th>íŠ¹ì„±í™”ê³ ì§„í•™ë¥ (%)</th>
-    				 		<th>íŠ¹ìˆ˜ëª©ì ê³ ì§„í•™ë¥ (%)</th>
-    				 		<th>ìžìœ¨ê³ ì§„í•™ë¥ (%)</th>
-    				 		<th>ê¸°íƒ€(%)</th>
-    				 	</tr>
-    				 	</thead>
-    				 	<tbody>
-					                 
-					                   	<tr>
-								 			<td colspan="2">
-								 			<a href='#' onclick='goJipyo(3);' title='ì¸ê·¼í•™êµ ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì¤ë‹ˆë‹¤'>ê°•ë¶êµ¬</a>
-								 			</td>
-								 			<td  title="2017í•™ë…„ë„ ê°•ë¶êµ¬ ì§„í•™ë¥ 99.9(%)">99.9</td>
-									 		<td  title="2017í•™ë…„ë„ ê°•ë¶êµ¬ ì¼ë°˜ê³  ì§„í•™ë¥  55.1(%)">55.1</td>
-									 		<td  title="2017í•™ë…„ë„ ê°•ë¶êµ¬ íŠ¹ì„±í™”ê³  ì§„í•™ë¥  24.4(%)">24.4</td>
-									 		<td  title="2017í•™ë…„ë„ ê°•ë¶êµ¬ íŠ¹ìˆ˜ëª©ì ê³  ì§„í•™ë¥   4.3(%)">4.3</td>
-									 		<td  title="2017í•™ë…„ë„ ê°•ë¶êµ¬ ìžì§„ê³  ì§„í•™ë¥  15.7(%)">15.7</td>
-									 		<td  title="2017í•™ë…„ë„ ê°•ë¶êµ¬ ê¸°íƒ€ 0.3(%)">0.3</td>
-									 	</tr>
-					                  
-					                   	<tr>
-								 			<td colspan="2">
-								 			ì„œìš¸íŠ¹ë³„ì‹œ
-								 			</td>
-								 			<td  title="2017í•™ë…„ë„ ì„œìš¸íŠ¹ë³„ì‹œ ì§„í•™ë¥ 99.8(%)">99.8</td>
-									 		<td  title="2017í•™ë…„ë„ ì„œìš¸íŠ¹ë³„ì‹œ ì¼ë°˜ê³  ì§„í•™ë¥  65.5(%)">65.5</td>
-									 		<td  title="2017í•™ë…„ë„ ì„œìš¸íŠ¹ë³„ì‹œ íŠ¹ì„±í™”ê³  ì§„í•™ë¥  16.5(%)">16.5</td>
-									 		<td  title="2017í•™ë…„ë„ ì„œìš¸íŠ¹ë³„ì‹œ íŠ¹ìˆ˜ëª©ì ê³  ì§„í•™ë¥   3.8(%)">3.8</td>
-									 		<td  title="2017í•™ë…„ë„ ì„œìš¸íŠ¹ë³„ì‹œ ìžì§„ê³  ì§„í•™ë¥  13.2(%)">13.2</td>
-									 		<td  title="2017í•™ë…„ë„ ì„œìš¸íŠ¹ë³„ì‹œ ê¸°íƒ€ 0.7(%)">0.7</td>
-									 	</tr>
-					                  
-					                   	<tr>
-								 			<td colspan="2">
-								 			ì „êµ­
-								 			</td>
-								 			<td  title="2017í•™ë…„ë„ ì „êµ­ ì§„í•™ë¥ 99.7(%)">99.7</td>
-									 		<td  title="2017í•™ë…„ë„ ì „êµ­ ì¼ë°˜ê³  ì§„í•™ë¥  71.1(%)">71.1</td>
-									 		<td  title="2017í•™ë…„ë„ ì „êµ­ íŠ¹ì„±í™”ê³  ì§„í•™ë¥  18.0(%)">18.0</td>
-									 		<td  title="2017í•™ë…„ë„ ì „êµ­ íŠ¹ìˆ˜ëª©ì ê³  ì§„í•™ë¥   4.1(%)">4.1</td>
-									 		<td  title="2017í•™ë…„ë„ ì „êµ­ ìžì§„ê³  ì§„í•™ë¥  5.9(%)">5.9</td>
-									 		<td  title="2017í•™ë…„ë„ ì „êµ­ ê¸°íƒ€ 0.6(%)">0.6</td>
-									 	</tr>
-					                  
-					                  </tbody>
-    				</table>
-					                 	<!-- //ì§€ì—­/ì‹œë„ í‰ê·  -->
-						
-						
-						
-	            		<!-- ìž‘ì„±ìží…Œì´ë¸” -->
-						
+            </select>
+
+            <!--
+            <select title="ÀÚ·á±âÁØ³â¿ù ¼±ÅÃ">
+                <option value="">2015³â 4¿ù</option>
+                <option value="">2014³â 4¿ù</option>
+                <option value="">2013³â 4¿ù</option>
+                <option value="">2012³â 4¿ù</option>
+            </select>
+            <button type="submit" id="" title=""><span>°Ë»ö</span></button>
+             -->
+        </div>
+    </div>
+    <div class="DataArea">
+        <!-- ±×·¡ÇÁ¿µ¿ª -->
+
+        <!-- »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ Max ¿¬µµ¿¡ °ø½ÃÀÚ·á°¡ ¾øÀ¸¸é ÀÚ·á°¡ ÀÖ´Â °¡Àå ÃÖ±Ù ¿¬µµÀÇ °ø½ÃÀÚ·á¸¦ º¸¿©ÁØ´Ù´Â µµ¿ò¸» Ãâ·Â -->
 
 
+        <ul class="chartList" tabindex="-1">
+            <li>
 
 
+                <h3></h3>
+                <div class="chart1"></div>
+                <script type="text/javascript" src="/js/webponent.licenseKey.js"></script>
+                <script type="text/javascript" src="/js/raphael.js?ran=6151469"></script>
+                <script type="text/javascript" src="/js/webponent.comm.common.js?ran=1009972"></script>
+                <script type="text/javascript" src="/js/webponent.chart.js?ran=8867179"></script>
+                <script type="text/javascript" src="/js/webponent.visual.pie.js?ran=1992802"></script>
+                <script>
+                    //<![CDATA[
+
+                    $("head").append("<style>.chart1{width:820px; height: 600px; border: 1px solid #eee;}</style>");
+                    var options = {
+                        data: {
+                            data: [
+
+                                {
+                                    Date: 'ÀÏ¹Ý°í',
+                                    price: '242',
+                                    legend: 'ÀÏ¹Ý°í'
+
+                                },
+                                {
+                                    Date: 'Æ¯¼ºÈ­°í',
+                                    price: '20',
+                                    legend: 'Æ¯¼ºÈ­°í'
+
+                                },
+                                {
+                                    Date: '[Æ¯¼ö¸ñÀû°í] °úÇÐ°í',
+                                    price: '4',
+                                    legend: '[Æ¯¼ö¸ñÀû°í] °úÇÐ°í'
+
+                                },
+                                {
+                                    Date: '[Æ¯¼ö¸ñÀû°í] ¿Ü°í±¹Á¦°í',
+                                    price: '13',
+                                    legend: '[Æ¯¼ö¸ñÀû°í] ¿Ü°í±¹Á¦°í'
+
+                                },
+                                {
+                                    Date: '[Æ¯¼ö¸ñÀû°í] ¿¹°íÃ¼°í',
+                                    price: '1',
+                                    legend: '[Æ¯¼ö¸ñÀû°í] ¿¹°íÃ¼°í'
+
+                                },
+                                {
+                                    Date: '[Æ¯¼ö¸ñÀû°í] ¸¶ÀÌ½ºÅÍ°í',
+                                    price: '2',
+                                    legend: '[Æ¯¼ö¸ñÀû°í] ¸¶ÀÌ½ºÅÍ°í'
+
+                                },
+                                {
+                                    Date: '[ÀÚÀ²°í] ÀÚÀ²Çü»ç¸³°í',
+                                    price: '70',
+                                    legend: '[ÀÚÀ²°í] ÀÚÀ²Çü»ç¸³°í'
+
+                                },
+                                {
+                                    Date: '[ÀÚÀ²°í] ÀÚÀ²Çü°ø¸³°í',
+                                    price: '1',
+                                    legend: '[ÀÚÀ²°í] ÀÚÀ²Çü°ø¸³°í'
+
+                                },
+                                {
+                                    Date: '±âÅ¸',
+                                    price: '0',
+                                    legend: '±âÅ¸'
+
+                                },
+                                {
+                                    Date: 'Ãë¾÷ÀÚ',
+                                    price: '0',
+                                    legend: 'Ãë¾÷ÀÚ'
+
+                                },
+                                {
+                                    Date: '[¹«Á÷ÀÚ ¹× ¹Ì»ó]',
+                                    price: '0',
+                                    legend: '[¹«Á÷ÀÚ ¹× ¹Ì»ó]'
+
+                                },],
+                            use: 'price'
+
+                        },
+                        legend: {
+                            func: function (pie) {
+                                var legend = [];
+                                var dataTotalValue = pie.settings.data.dataTotalValue;
+                                var data = pie.settings.data.renderedData;
+                                for (var i = 0; i < data.length; i++) {
+                                    var per = Math.round(100 / dataTotalValue * data[i].price);
+                                    var date = data[i].Date;
+                                    var price = data[i].price;
+                                    legend.push(date + priceDataFormat(price) + '¸í' + '(' + per + '%)');
+
+                                }
+                                return legend;
+                            }
+                        },
+                        toolTip: {
+                            use: true,
+                            position: {
+                                x: 0,
+                                y: 0
+                            },
+                            func: function (pie, data, tipElement) {
+
+                                var dataTotalValue = pie.settings.data.dataTotalValue;
+                                var date = data.Date;
+                                var setData = Math.round(100 / dataTotalValue) + '%';
+                                var tip = '<div class="text">' + date +
+                                    '<br/> ÇÐ»ý ' + String(data.price).format().trim() + '¸í' + '</div>';
+                                var arrow = '<div class="arrow" style="width: ' +
+                                    tipElement.width() + 'px;"></div>';
+
+                                tipElement.html(tip);
+                                tipElement.html(tipElement.html() + arrow);
+                            }
+                        }
+
+                    };
+
+                    var styles = {
+                        layout: {
+                            position: {
+                                y: 5
+                            }
+                        },
+                        pie: {
+                            area: {
+                                color: [
+                                    '#4DB5AF', '#F6AB60', '#EB785D', '#4DB550', '#6661C3', '#4DB5AF', '#F6AB60', '#EB785D', '#4DB550', '#6661C3', '#4DB5AF', '#F6AB60', '#EB785D', '#4DB550', '#6661C3'
+                                ]
+                            }
+                        },
+                        base: {}
+
+                    };
+                    //alert(options.data.data[1].price);
+                    pie = webponent.visual.pie.init($(".chart1"), styles, options);
+                    //]]>
+                </script>
 
 
+            </li>
+        </ul>
+
+        <!-- ±×·¡ÇÁ¿µ¿ª ³¡ -->
+
+        <!-- ¿¢¼¿ Ãâ·Â ¹üÀ§ ¼³Á¤  -->
+        <div class="DataTable" id="excel">
+            <!-- Å×ÀÌºí¿µ¿ª -->
+
+            <div class="TableTitle">
+
+                <div class="TableTxt2">(´ÜÀ§: ¸í, %)</div>
+            </div>
+
+            <table class="TableType1" summary="Á¹¾÷»ýÀÇ Áø·ÎÇöÈ²">
+                <caption>Á¹¾÷»ýÀÇ Áø·ÎÇöÈ²</caption>
+                <thead>
+                <tr>
+                    <th colspan="16">2017ÇÐ³âµµ</th>
+                </tr>
+                <tr>
+                    <th rowspan="3" style="width:4%">±¸&nbsp;&nbsp;ºÐ</th>
+                    <th rowspan="3" style="width:4%">Á¹¾÷ÀÚ</th>
+                    <th colspan="12">ÁøÇÐÀÚ</th>
+                    <th rowspan="3" style="width:4%">Ãë¾÷ÀÚ</th>
+                    <th rowspan="3" style="width:4%">¹«Á÷ÀÚ ¹× ¹Ì»ó</th>
+                </tr>
+                <tr>
+                    <th rowspan="2" style="width:4%">ÀÏ¹Ý°í</th>
+                    <th rowspan="2" style="width:4%">Æ¯¼ºÈ­°í</th>
+                    <th colspan="5">Æ¯¼ö¸ñÀû°í</th>
+                    <th colspan="3">ÀÚÀ²°í</th>
+                    <th rowspan="2" style="width:4%">±âÅ¸</th>
+                    <th rowspan="2" style="width:4%">ÁøÇÐÀÚ°è</th>
+                </tr>
+                <tr>
+                    <th style="width:4%">°úÇÐ°í</th>
+                    <th style="width:4%">¿Ü°í±¹Á¦°í</th>
+                    <th style="width:4%">¿¹°íÃ¼°í</th>
+                    <th style="width:4%">¸¶ÀÌ½ºÅÍ°í</th>
+                    <th style="width:4%">¼Ò°è</th>
+                    <th style="width:4%">ÀÚÀ²Çü»ç¸³°í</th>
+                    <th style="width:4%">ÀÚÀ²Çü°ø¸³°í</th>
+                    <th style="width:4%">¼Ò°è</th>
 
 
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>³²</th>
+                    <td title="Á¹¾÷ÀÚ">187</td>
+                    <td title="ÁøÇÐÀÚ ÀÏ¹Ý°í">112</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ºÈ­°í">7</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í °úÇÐ°í">4</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿Ü°í±¹Á¦°í">2</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿¹°íÃ¼°í">1</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¸¶ÀÌ½ºÅÍ°í">1</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¼Ò°è">8</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ÀÚÀ²Çü»ç¸³°í">59</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ÀÚÀ²Çü°ø¸³°í">1</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ¼Ò°è">60</td>
+                    <td title="ÁøÇÐÀÚ ±âÅ¸">0</td>
+                    <td title="ÁøÇÐÀÚ ÁøÇÐÀÚ°è">187</td>
+                    <td title="Ãë¾÷ÀÚ">0</td>
+                    <td title="¹«Á÷ ¹× ¹Ì»ó">0</td>
+                </tr>
+                <tr>
+                    <th>¿©</th>
+                    <td title="Á¹¾÷ÀÚ">166</td>
+                    <td title="ÁøÇÐÀÚ ÀÏ¹Ý°í">130</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ºÈ­°í">13</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í °úÇÐ°í">0</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿Ü°í±¹Á¦°í">11</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿¹°íÃ¼°í">0</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¸¶ÀÌ½ºÅÍ°í">1</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¼Ò°è">12</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ÀÚÀ²Çü»ç¸³°í">11</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ÀÚÀ²Çü°ø¸³°í">0</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ¼Ò°è">11</td>
+                    <td title="ÁøÇÐÀÚ ±âÅ¸">0</td>
+                    <td title="ÁøÇÐÀÚ ÁøÇÐÀÚ°è">166</td>
+                    <td title="Ãë¾÷ÀÚ">0</td>
+                    <td title="¹«Á÷ ¹× ¹Ì»ó">0</td>
+                </tr>
+                <tr>
+                    <th>ÇÕ°è</th>
+                    <td title="Á¹¾÷ÀÚ">353</td>
+                    <td title="ÁøÇÐÀÚ ÀÏ¹Ý°í">242</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ºÈ­°í">20</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í °úÇÐ°í">4</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿Ü°í±¹Á¦°í">13</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿¹°íÃ¼°í">1</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¸¶ÀÌ½ºÅÍ°í">2</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¼Ò°è">20</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ÀÚÀ²Çü»ç¸³°í">70</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ÀÚÀ²Çü°ø¸³°í">1</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ¼Ò°è">71</td>
+                    <td title="ÁøÇÐÀÚ ±âÅ¸">0</td>
+                    <td title="ÁøÇÐÀÚ ÁøÇÐÀÚ°è">353</td>
+                    <td title="Ãë¾÷ÀÚ">0</td>
+                    <td title="¹«Á÷ ¹× ¹Ì»ó">0</td>
+                </tr>
+                <tr>
+                    <th>ºñ&nbsp;&nbsp;À²</th>
+                    <td></td>
+                    <td title="ÁøÇÐÀÚ ÀÏ¹Ý°í">68.6</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ºÈ­°í">5.7</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í °úÇÐ°í">1.1</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿Ü°í±¹Á¦°í">3.7</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¿¹°íÃ¼°í">0.3</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¸¶ÀÌ½ºÅÍ°í">0.6</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ¼Ò°è">5.7</td>
+                    <td title="ÁøÇÐÀÚ Æ¯¼ö¸ñÀû°í ¸¶ÀÌ½ºÅÍ°í">19.8</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ÀÚÀ²Çü°ø¸³°í">0.3</td>
+                    <td title="ÁøÇÐÀÚ ÀÚÀ²°í ¼Ò°è">20.1</td>
+                    <td title="ÁøÇÐÀÚ ±âÅ¸">0.0</td>
+                    <td title="ÁøÇÐÀÚ ÁøÇÐÀÚ°è">100.0</td>
+                    <td title="Ãë¾÷ÀÚ">0.0</td>
+                    <td title="¹«Á÷ ¹× ¹Ì»ó">0.0</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Áö¿ª/½Ãµµ Æò±Õ -->
+            <table class="TableType2">
+                <caption>Á¹¾÷»ýÀÇ Áø·ÎÇöÈ²</caption>
+                <thead>
+                <tr>
+                    <th colspan="2">±¸&nbsp;&nbsp;ºÐ</th>
+                    <th>ÁøÇÐ·ü(%)</th>
+                    <th>ÀÏ¹Ý°íÁøÇÐ·ü(%)</th>
+                    <th>Æ¯¼ºÈ­°íÁøÇÐ·ü(%)</th>
+                    <th>Æ¯¼ö¸ñÀû°íÁøÇÐ·ü(%)</th>
+                    <th>ÀÚÀ²°íÁøÇÐ·ü(%)</th>
+                    <th>±âÅ¸(%)</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td colspan="2">
+                        <a href='#' onclick='goJipyo(3);' title='ÀÎ±ÙÇÐ±³ ¸®½ºÆ®¸¦ º¸¿©ÁÝ´Ï´Ù'>°­ºÏ±¸</a>
+                    </td>
+                    <td title="2017ÇÐ³âµµ °­ºÏ±¸ ÁøÇÐ·ü99.9(%)">99.9</td>
+                    <td title="2017ÇÐ³âµµ °­ºÏ±¸ ÀÏ¹Ý°í ÁøÇÐ·ü 55.1(%)">55.1</td>
+                    <td title="2017ÇÐ³âµµ °­ºÏ±¸ Æ¯¼ºÈ­°í ÁøÇÐ·ü 24.4(%)">24.4</td>
+                    <td title="2017ÇÐ³âµµ °­ºÏ±¸ Æ¯¼ö¸ñÀû°í ÁøÇÐ·ü  4.3(%)">4.3</td>
+                    <td title="2017ÇÐ³âµµ °­ºÏ±¸ ÀÚÁø°í ÁøÇÐ·ü 15.7(%)">15.7</td>
+                    <td title="2017ÇÐ³âµµ °­ºÏ±¸ ±âÅ¸ 0.3(%)">0.3</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        ¼­¿ïÆ¯º°½Ã
+                    </td>
+                    <td title="2017ÇÐ³âµµ ¼­¿ïÆ¯º°½Ã ÁøÇÐ·ü99.8(%)">99.8</td>
+                    <td title="2017ÇÐ³âµµ ¼­¿ïÆ¯º°½Ã ÀÏ¹Ý°í ÁøÇÐ·ü 65.5(%)">65.5</td>
+                    <td title="2017ÇÐ³âµµ ¼­¿ïÆ¯º°½Ã Æ¯¼ºÈ­°í ÁøÇÐ·ü 16.5(%)">16.5</td>
+                    <td title="2017ÇÐ³âµµ ¼­¿ïÆ¯º°½Ã Æ¯¼ö¸ñÀû°í ÁøÇÐ·ü  3.8(%)">3.8</td>
+                    <td title="2017ÇÐ³âµµ ¼­¿ïÆ¯º°½Ã ÀÚÁø°í ÁøÇÐ·ü 13.2(%)">13.2</td>
+                    <td title="2017ÇÐ³âµµ ¼­¿ïÆ¯º°½Ã ±âÅ¸ 0.7(%)">0.7</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        Àü±¹
+                    </td>
+                    <td title="2017ÇÐ³âµµ Àü±¹ ÁøÇÐ·ü99.7(%)">99.7</td>
+                    <td title="2017ÇÐ³âµµ Àü±¹ ÀÏ¹Ý°í ÁøÇÐ·ü 71.1(%)">71.1</td>
+                    <td title="2017ÇÐ³âµµ Àü±¹ Æ¯¼ºÈ­°í ÁøÇÐ·ü 18.0(%)">18.0</td>
+                    <td title="2017ÇÐ³âµµ Àü±¹ Æ¯¼ö¸ñÀû°í ÁøÇÐ·ü  4.1(%)">4.1</td>
+                    <td title="2017ÇÐ³âµµ Àü±¹ ÀÚÁø°í ÁøÇÐ·ü 5.9(%)">5.9</td>
+                    <td title="2017ÇÐ³âµµ Àü±¹ ±âÅ¸ 0.6(%)">0.6</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <!-- //Áö¿ª/½Ãµµ Æò±Õ -->
 
 
+            <!-- ÀÛ¼ºÀÚÅ×ÀÌºí -->
 
 
+            <p class="TableTxt">ÀÛ¼ºÀÚ : ÇÑ¸í¼±<span class="Line">|</span>È®ÀÎÀÚ : ¿¬³­¿µ</p>
+
+            <!-- //ÀÛ¼ºÀÚÅ×ÀÌºí³¡-->
+        </div>
+        <!-- ¿¢¼¿ Ãâ·Â ¹üÀ§ ¼³Á¤ ³¡ -->
+
+        <!-- °ø½Ã°¡ÀÌµåÅ×ÀÌºí -->
 
 
+        <div class="Guide" id="gongsiGuide_06">
 
+            <div class="GuideTitle">°ø½Ã°¡ÀÌµå</div>
+            <div class="GuideContents">
+                ¡Ü°ø½Ã±â°ü : Áß, °í, Æ¯, °¢<br/>¡ÜÀÚ·á±âÁØÀÏ<br/> ¨ç Á¹¾÷ÀÚ : 2017³â 2¿ù Á¹¾÷ÀÏ<br/> ¨è Á¹¾÷ ÈÄ »óÈ² : 2017³â 4¿ù 1ÀÏ<br/>¡Ü°ø½Ã½Ã±â : ¸Å³â 5¿ù
+                (¿¬1È¸)<br/>¡Ü°ø½Ã³»¿ë : Á¹¾÷»ýÀÇ Áø·Î ÇöÈ²<br/><br/>¢º °øÅë<br/>¡¼Á¹¾÷ÀÚ¡½: 2017³â 2¿ù Á¹¾÷ÀÚ ÀÎ¿ø¼ö (Á¶±âÁ¹¾÷ÀÚ Æ÷ÇÔ) <br/>¡¼ÁøÇÐÀÚ¡½: ÁøÇÐÇÏ¿© ÇØ´ç
+                ÇÐ±³¿¡ µî·ÏÇÑ ÇÐ»ý¼ö (1ÇÐ»ý 1ÇÐ±³ µî·Ï ¿øÄ¢)<br/>¡¼Ãë¾÷ÀÚ¡½: 1°³¿ù µ¿¾ÈÀÇ ±Ù·Î½Ã°£ÀÌ 60½Ã°£ ÀÌ»óÀ¸·Î ±×¿¡ ´ëÇÑ ÀÏÁ¤ ¼ÒµæÀÌ ÀÖ´Â ÇÐ»ýÀ¸·Î¼­ Á¤±ÔÁ÷, ´ë±â¹ß·ÉÀÚ ºñÁ¤±ÔÁ÷,
+                ÀÚ¿µ¾÷ÀÚ µî <br/> ¡Ø ÀÏÀ» ÇÏÁö ¾Ê°í ¼öÀÔÀÌ ¾ø´Â °æ¿ì´Â Á÷¾÷À» °®Áö ¾ÊÀº °ÍÀ¸·Î °£ÁÖÇÏ¿© Ãë¾÷ÀÚ·Î °£ÁÖÇÏÁö ¾ÊÀ½<br/><br/>¢º ÁßÇÐ±³<br/>¡¼ÁøÇÐÀÚ¡½<br/> - ÀÏ¹Ý°í :
+                Æ¯Á¤ºÐ¾ß°¡ ¾Æ´Ñ ´Ù¾çÇÑ ºÐ¾ß¿¡ °ÉÃÄ ÀÏ¹ÝÀûÀÎ ±³À°À» ½Ç½ÃÇÏ´Â °íµîÇÐ±³<br/> - Æ¯¼ºÈ­°í : ¼ÒÁú°ú Àû¼º ¹× ´É·ÂÀÌ À¯»çÇÑ ÇÐ»ýÀ» ´ë»óÀ¸·Î Æ¯Á¤ºÐ¾ßÀÇ ÀÎÀç¾ç¼ºÀ» ¸ñÀûÀ¸·Î ÇÏ´Â Á÷¾÷±³À°
+                ¶Ç´Â ÀÚ¿¬ÇöÀå ½Ç½À µî Ã¼ÇèÀ§ÁÖÀÇ ´ë¾È±³À°À» Àü¹®ÀûÀ¸·Î ½Ç½ÃÇÏ´Â °íµîÇÐ±³<br/> - Æ¯¼ö¸ñÀû°í : Æ¯¼öºÐ¾ßÀÇ Àü¹®ÀûÀÎ ±³À°À» ¸ñÀûÀ¸·Î ÇÏ´Â °íµîÇÐ±³<br/> - ÀÚÀ²°í : ±³À°°úÁ¤,
+                ÇÐ»ç¿î¿µÀÇ ÀÚÀ²¼ºÀ» Á¦°íÇÑ °íµîÇÐ±³<br/> - ±âÅ¸ : ¿Ü±¹ÀÎÇÐ±³, À¯ÇÐ, Æ¯¼öÇÐ±³, ´ë¾ÈÇÐ±³, °¢Á¾ÇÐ±³, ¿µÀçÇÐ±³ µî<br/>¡¼¹«Á÷ÀÚ ¹× ¹Ì»ó¡½: ÁøÇÐÇÏÁö ¾Ê°Å³ª, ÀÏÁ¤ÇÑ Á÷¾÷ÀÌ
+                ¾ø´ÂÀÚ, Á¹¾÷ ÈÄ »óÈ²ÀÌ ÆÄ¾ÇµÇÁö ¾Ê´Â ÀÚ<br/><br/>¢º °íµîÇÐ±³<br/>¡¼ÁøÇÐÀÚ¡½<br/> - Àü¹®´ëÇÐ : ¼ö¾÷¿¬ÇÑ 2~3³â ´ëÇÐ¿¡ 1ÇÐ»ý 1ÇÐ±³¿¡ µî·ÏÇÑ ÇÐ»ý¼ö (2³âÁ¦ ÀÌ»óÀÇ
+                Æú¸®ÅØ´ëÇÐ(±â´É´ëÇÐ) Æ÷ÇÔ) <br/> - ´ëÇÐ±³ : ¼ö¾÷¿¬ÇÑ 4³â ÀÌ»óÀÇ ´ëÇÐ¿¡ 1ÇÐ»ý 1ÇÐ±³¿¡ µî·ÏÇÑ ÇÐ»ý¼ö<br/> - ±¹¿ÜÁøÇÐ : ¿Ü±¹ 4³âÁ¦ ´ëÇÐ±³, Àü¹®´ë(college Æ÷ÇÔ)
+                ÁøÇÐ<br/>¡¼±âÅ¸¡½: ÁøÇÐ ¶Ç´Â Ãë¾÷¿¡ ¼ÓÇÏÁö ¾Ê´Â °æ¿ì<br/><br/>¢Â °ø½Ã±â°ü ±¸ºÐ (ÃÊµîÇÐ±³, ÁßÇÐ±³, °íµîÇÐ±³, Æ¯¼öÇÐ±³, °¢Á¾ÇÐ±³, ±âÅ¸ÇÐ±³)<br/>¢Â ÇãÀ§³»¿ë ¹× ¿À·ù
+                ½Å°í (schoolinfo@keris.or.kr)
 
+            </div>
+        </div>
 
+        <!-- //guide -->
+        <!-- //°ø½Ã°¡ÀÌµåÅ×ÀÌºí³¡-->
 
-
-
-
-
-
-
-	<p class="TableTxt">ìž‘ì„±ìž : í•œëª…ì„ <span class="Line">|</span>í™•ì¸ìž : ì—°ë‚œì˜</p>
-	
-						<!-- //ìž‘ì„±ìží…Œì´ë¸”ë-->
-					</div> 
-					<!-- ì—‘ì…€ ì¶œë ¥ ë²”ìœ„ ì„¤ì • ë -->
-				
-				<!-- ê³µì‹œê°€ì´ë“œí…Œì´ë¸” -->
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	<div class="Guide" id="gongsiGuide_06">
-		
-		<div class="GuideTitle">ê³µì‹œê°€ì´ë“œ</div>
-		<div class="GuideContents">
-			â—ê³µì‹œê¸°ê´€ : ì¤‘, ê³ , íŠ¹, ê°<br/>â—ìžë£Œê¸°ì¤€ì¼<br/>  â‘  ì¡¸ì—…ìž : 2017ë…„ 2ì›” ì¡¸ì—…ì¼<br/>  â‘¡ ì¡¸ì—… í›„ ìƒí™© : 2017ë…„ 4ì›” 1ì¼<br/>â—ê³µì‹œì‹œê¸° : ë§¤ë…„ 5ì›” (ì—°1íšŒ)<br/>â—ê³µì‹œë‚´ìš© : ì¡¸ì—…ìƒì˜ ì§„ë¡œ í˜„í™©<br/><br/>â–¶ ê³µí†µ<br/>ã€ì¡¸ì—…ìžã€‘: 2017ë…„ 2ì›” ì¡¸ì—…ìž ì¸ì›ìˆ˜ (ì¡°ê¸°ì¡¸ì—…ìž í¬í•¨) <br/>ã€ì§„í•™ìžã€‘: ì§„í•™í•˜ì—¬ í•´ë‹¹ í•™êµì— ë“±ë¡í•œ í•™ìƒìˆ˜ (1í•™ìƒ 1í•™êµ ë“±ë¡ ì›ì¹™)<br/>ã€ì·¨ì—…ìžã€‘: 1ê°œì›” ë™ì•ˆì˜ ê·¼ë¡œì‹œê°„ì´ 60ì‹œê°„ ì´ìƒìœ¼ë¡œ ê·¸ì— ëŒ€í•œ ì¼ì • ì†Œë“ì´ ìžˆëŠ” í•™ìƒìœ¼ë¡œì„œ ì •ê·œì§, ëŒ€ê¸°ë°œë ¹ìž ë¹„ì •ê·œì§, ìžì˜ì—…ìž ë“± <br/>   â€» ì¼ì„ í•˜ì§€ ì•Šê³  ìˆ˜ìž…ì´ ì—†ëŠ” ê²½ìš°ëŠ” ì§ì—…ì„ ê°–ì§€ ì•Šì€ ê²ƒìœ¼ë¡œ ê°„ì£¼í•˜ì—¬ ì·¨ì—…ìžë¡œ ê°„ì£¼í•˜ì§€ ì•ŠìŒ<br/><br/>â–¶ ì¤‘í•™êµ<br/>ã€ì§„í•™ìžã€‘<br/>   - ì¼ë°˜ê³  : íŠ¹ì •ë¶„ì•¼ê°€ ì•„ë‹Œ ë‹¤ì–‘í•œ ë¶„ì•¼ì— ê±¸ì³ ì¼ë°˜ì ì¸ êµìœ¡ì„ ì‹¤ì‹œí•˜ëŠ” ê³ ë“±í•™êµ<br/>   - íŠ¹ì„±í™”ê³  : ì†Œì§ˆê³¼ ì ì„± ë° ëŠ¥ë ¥ì´ ìœ ì‚¬í•œ í•™ìƒì„ ëŒ€ìƒìœ¼ë¡œ íŠ¹ì •ë¶„ì•¼ì˜ ì¸ìž¬ì–‘ì„±ì„ ëª©ì ìœ¼ë¡œ í•˜ëŠ” ì§ì—…êµìœ¡ ë˜ëŠ” ìžì—°í˜„ìž¥ ì‹¤ìŠµ ë“± ì²´í—˜ìœ„ì£¼ì˜ ëŒ€ì•ˆêµìœ¡ì„ ì „ë¬¸ì ìœ¼ë¡œ ì‹¤ì‹œí•˜ëŠ” ê³ ë“±í•™êµ<br/>   - íŠ¹ìˆ˜ëª©ì ê³  : íŠ¹ìˆ˜ë¶„ì•¼ì˜ ì „ë¬¸ì ì¸ êµìœ¡ì„ ëª©ì ìœ¼ë¡œ í•˜ëŠ” ê³ ë“±í•™êµ<br/>   - ìžìœ¨ê³  : êµìœ¡ê³¼ì •, í•™ì‚¬ìš´ì˜ì˜ ìžìœ¨ì„±ì„ ì œê³ í•œ ê³ ë“±í•™êµ<br/>   - ê¸°íƒ€ : ì™¸êµ­ì¸í•™êµ, ìœ í•™, íŠ¹ìˆ˜í•™êµ, ëŒ€ì•ˆí•™êµ, ê°ì¢…í•™êµ, ì˜ìž¬í•™êµ ë“±<br/>ã€ë¬´ì§ìž ë° ë¯¸ìƒã€‘: ì§„í•™í•˜ì§€ ì•Šê±°ë‚˜, ì¼ì •í•œ ì§ì—…ì´ ì—†ëŠ”ìž, ì¡¸ì—… í›„ ìƒí™©ì´ íŒŒì•…ë˜ì§€ ì•ŠëŠ” ìž<br/><br/>â–¶ ê³ ë“±í•™êµ<br/>ã€ì§„í•™ìžã€‘<br/>   - ì „ë¬¸ëŒ€í•™ : ìˆ˜ì—…ì—°í•œ 2~3ë…„ ëŒ€í•™ì— 1í•™ìƒ 1í•™êµì— ë“±ë¡í•œ í•™ìƒìˆ˜ (2ë…„ì œ ì´ìƒì˜ í´ë¦¬í…ëŒ€í•™(ê¸°ëŠ¥ëŒ€í•™) í¬í•¨) <br/>   - ëŒ€í•™êµ : ìˆ˜ì—…ì—°í•œ 4ë…„ ì´ìƒì˜ ëŒ€í•™ì— 1í•™ìƒ 1í•™êµì— ë“±ë¡í•œ í•™ìƒìˆ˜<br/>   - êµ­ì™¸ì§„í•™ : ì™¸êµ­ 4ë…„ì œ ëŒ€í•™êµ, ì „ë¬¸ëŒ€(college í¬í•¨) ì§„í•™<br/>ã€ê¸°íƒ€ã€‘: ì§„í•™ ë˜ëŠ” ì·¨ì—…ì— ì†í•˜ì§€ ì•ŠëŠ” ê²½ìš°<br/><br/>â—ˆ ê³µì‹œê¸°ê´€ êµ¬ë¶„ (ì´ˆë“±í•™êµ, ì¤‘í•™êµ, ê³ ë“±í•™êµ, íŠ¹ìˆ˜í•™êµ, ê°ì¢…í•™êµ, ê¸°íƒ€í•™êµ)<br/>â—ˆ í—ˆìœ„ë‚´ìš© ë° ì˜¤ë¥˜ ì‹ ê³  (schoolinfo@keris.or.kr)
-		
-		</div>
-	</div>
-	
-	<!-- //guide -->   
-				<!-- //ê³µì‹œê°€ì´ë“œí…Œì´ë¸”ë-->
-				
-					<!-- í…Œì´ë¸”ì˜ì—­ -->
-				</div>
-			</article>
-			<!-- ê³µì‹œí•­ëª© ì„¸ë¶€ì‚¬í•­ -->
+        <!-- Å×ÀÌºí¿µ¿ª -->
+    </div>
+</article>
+<!-- °ø½ÃÇ×¸ñ ¼¼ºÎ»çÇ× -->
 </body>
 </html>
