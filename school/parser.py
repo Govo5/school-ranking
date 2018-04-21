@@ -107,6 +107,7 @@ def get_dict_from_parsed_html(info, year, statistics_number):
         if index < 4:
             continue
         row = {
+            '학교명': get_school_name(info),
             '지번': get_jibun(info),
             '도로명': get_road(info),
             '년도': year,
@@ -121,6 +122,7 @@ def get_dict_from_parsed_html(info, year, statistics_number):
 
     enroll_high_school = None
     for index in range(0, len(data)):
+        pprint(data[index])
         enroll_high_school = EnrollHighSchool().create(data[index])
         enroll_high_school.save()
 

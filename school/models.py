@@ -25,6 +25,7 @@ class EnrollHighSchool(models.Model):
         '무직 및 미상'
     ]
 
+    school_name = models.CharField(max_length=50, default='', help_text="학교명")
     jibun = models.CharField(max_length=50, help_text="지번 주소")
     road = models.CharField(max_length=50, help_text="도로명 주소")
     year = models.IntegerField(help_text="년도")
@@ -56,7 +57,11 @@ class EnrollHighSchool(models.Model):
 
     @classmethod
     def create(cls, data):
+        for col in cls.column:
+            if col not in data:
+                data.setdefault(col, 0.0)
         enroll = cls(
+            school_name=data['학교명'],
             jibun=data['지번'],
             road=data['도로명'],
             year=data['년도'],
@@ -78,7 +83,7 @@ class EnrollHighSchool(models.Model):
             # sum
             etc=data[cls.column[11]],
             # sum
-            job=data[cls.column[13] or ''],
+            job=data[cls.column[13]],
             nothing=data[cls.column[14]],
 
             data_type=data['형태']
