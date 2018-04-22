@@ -1,0 +1,9 @@
+<h3>행동정 법정동 csv 파일</h3>
+<a href="http://kssc.kostat.go.kr/ksscNew_web/kssc/common/CommonBoardList.do?gubun1&strCategoryNameCode019&strBbsIdkascrr&categoryMenu014">
+    다운로드 링크
+</a>
+<form action="{% url 'district:store' %}" method="post">
+    {% csrf_token %}
+    <input type="file" name="code" id="code">
+    <button>업로드</button>
+</form>
