@@ -182,7 +182,7 @@
           }
         }
       },
-      "오피스텔 전월세 신고 조회 서비스": {
+      "오피스텔전월세": {
         "version": "1.0",
         "korean": "오피스텔 전월세 신고 조회 서비스",
         "english": "getRTMSDataSvcOffiRent",

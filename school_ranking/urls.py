@@ -20,5 +20,6 @@ urlpatterns = [
     path('naver/', include('naver.urls')),
     path('school/', include('school.urls')),
     path('district/', include('district.urls')),
+    path('open/', include('open.urls')),
     path('admin/', admin.site.urls),
 ]
