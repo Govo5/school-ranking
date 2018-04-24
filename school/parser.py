@@ -1,9 +1,8 @@
-import os
-import sys
 import json
-import requests
-
+import sys
 from pprint import pprint
+
+import requests
 from bs4 import BeautifulSoup
 
 from school_ranking.settings import BASE_DIR

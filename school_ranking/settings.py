@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'map.apps.MapConfig',
     'district.apps.DistrictConfig',
     'school.apps.SchoolConfig',
     'naver.apps.NaverConfig',

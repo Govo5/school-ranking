@@ -1,14 +1,11 @@
 import json
 import time
 
-from school.parser import get_region_code, get_school_name
-from . import parser
-
-from django.shortcuts import render
 from django.http import HttpResponse
 
+from school.parser import get_region_code, get_school_name
 from school_ranking.settings import BASE_DIR
-from pprint import pprint
+from . import parser
 
 
 # Create your views here.
@@ -52,9 +49,17 @@ def index(request):
         '1130510400',  # 우이동
     ]
 
+    노원구 = [
+        '1135010200',  # 월계동
+        '1135010300',  # 공릉동
+        # '1135010400',  # 하계동
+        # '1135010500',  # 상계동
+        # '1135010600',  # 중계동
+    ]
+
     html = ''
     for item in items['schoolList03']:
-        if get_region_code(item) in 강북구:
+        if get_region_code(item) in 노원구:
             name = get_school_name(item)
             region_code = parser.middle_school_parse(2017, name).__str__()
             html += name + ": " + region_code + "<br>"
