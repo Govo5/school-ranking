@@ -5,27 +5,27 @@ from django.utils import timezone
 # Create your models here.
 
 class EnrollHighSchool(models.Model):
+    year = models.IntegerField(help_text="년도")
     school_name = models.CharField(max_length=50, default='', help_text="학교명")
     jibun = models.CharField(max_length=50, help_text="지번 주소")
     road = models.CharField(max_length=50, help_text="도로명 주소")
-    year = models.IntegerField(help_text="년도")
     school_code = models.CharField(max_length=50, help_text="학교코드")
     region_code = models.CharField(max_length=50, help_text="지역코드")
 
     graduate = models.FloatField(help_text="졸업자")
-    general = models.FloatField(help_text="진학자 일반고'")
+    foreigner = models.FloatField(help_text="진학자 특수목적고 외고국제고")
+    science = models.FloatField(help_text="진학자 특수목적고 과학고")
+
+    # sum
+    private = models.FloatField(help_text="진학자 자율고 자율형사립고")
+    public = models.FloatField(help_text="진학자 자율고 자율형공립고")
+
+    # sum
+    general = models.FloatField(help_text="진학자 일반고")
+    etc = models.FloatField(help_text="진학자 기타")
     characterization = models.FloatField(help_text="진학자 특성화고")
-    science = models.FloatField(help_text="진학자 특수목적고 과학고'")
-    foreigner = models.FloatField(help_text="진학자 특수목적고 외고국제고'")
-
-    art = models.FloatField(help_text="진학자 특수목적고 예고체고'")
-    meister = models.FloatField(help_text="진학자 특수목적고 마이스터고'")
-    # sum
-    private = models.FloatField(help_text="진학자 자율고 자율형사립고'")
-    public = models.FloatField(help_text="진학자 자율고 자율형공립고'")
-
-    # sum
-    etc = models.FloatField(help_text="진학자 기타'")
+    art = models.FloatField(help_text="진학자 특수목적고 예고체고")
+    meister = models.FloatField(help_text="진학자 특수목적고 마이스터고")
     # sum
     job = models.FloatField(help_text="취업자")
     nothing = models.FloatField(help_text="무직 및 미상")

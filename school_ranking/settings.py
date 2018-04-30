@@ -29,10 +29,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'map.apps.MapConfig',
-    'district.apps.DistrictConfig',
-    'school.apps.SchoolConfig',
     'naver.apps.NaverConfig',
+    'school.apps.SchoolConfig',
+    'district.apps.DistrictConfig',
+    'open.apps.OpenConfig',
+    'map.apps.MapConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

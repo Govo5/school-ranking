@@ -23,8 +23,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -45,8 +45,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -67,8 +67,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -89,8 +89,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -111,8 +111,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -133,8 +133,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -155,8 +155,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -177,8 +177,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -199,8 +199,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       },
@@ -210,7 +210,7 @@
         "english": "Apartment real estate transaction data(development)",
         "operation": "오피스텔 전월세 신고 조회 서비스",
         "description": "지역코드와 기간을 이용하여 해당기간, 해당지역의 아파트 실거래가 신고자료를 제공하는 아파트 실거래가 신고 상세정보 조회",
-        "url": "http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev",
+        "url": "http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev",
         "parameters": {
           "LAWD_CD": {
             "required": true,
@@ -221,8 +221,8 @@
           "DEAL_YMD": {
             "required": true,
             "type": "integer",
-            "description": "지역코드",
-            "example": "11110"
+            "description": "거래년월",
+            "example": "201804"
           }
         }
       }
